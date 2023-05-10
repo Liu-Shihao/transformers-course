@@ -1,8 +1,8 @@
 import torch
 from transformers import AutoTokenizer, AutoModel, AutoModelForSequenceClassification
-# https://huggingface.co/learn/nlp-course/zh-CN/chapter2/2?fw=pt
 
 '''
+https://huggingface.co/learn/nlp-course/zh-CN/chapter2/2?fw=pt
 我们使用AutoTokenizer类及其from_pretrained()方法。使用我们模型的检查点名称，它将自动获取与模型的标记器相关联的数据，并对其进行缓存（因此只有在您第一次运行下面的代码时才会下载）。
 
 因为sentiment-analysis（情绪分析）管道的默认检查点是distilbert-base-uncased-finetuned-sst-2-english
@@ -53,15 +53,13 @@ print(outputs.logits)
 我们的模型预测第一句为[-1.5607, 1.6123]，第二句为[ 4.1692, -3.3464]。这些不是概率，而是logits，即模型最后一层输出的原始非标准化分数。要转换为概率，它们需要经过SoftMax层（所有🤗Transformers模型输出logits，因为用于训练的损耗函数通常会将最后的激活函数（如SoftMax）与实际损耗函数（如交叉熵）融合）：
 '''
 
-
-'''
-现在我们可以看到，模型预测第一句为[0.0402, 0.9598]，第二句为[0.9995, 0.0005]。这些是可识别的概率分数。
-为了获得每个位置对应的标签，我们可以检查模型配置的id2label属性
-'''
 predictions = torch.nn.functional.softmax(outputs.logits, dim=-1)
 print(predictions)
 print(model.config.id2label)
 '''
+现在我们可以看到，模型预测第一句为[0.0402, 0.9598]，第二句为[0.9995, 0.0005]。这些是可识别的概率分数。
+为了获得每个位置对应的标签，我们可以检查模型配置的id2label属性
+
 现在我们可以得出结论，该模型预测了以下几点：
 
 第一句：否定：0.0402，肯定：0.9598
