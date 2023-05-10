@@ -2,3 +2,4 @@ langchain==0.0.162
 transformers==4.28.1
 chromadb==0.3.22
 gradio==3.28.3
+llama-index==0.6.4
