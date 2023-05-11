@@ -1,11 +1,13 @@
-# -*- coding: utf-8 -*-
-"""
-@author:XuMing(xuming624@qq.com)
-@description: pip install gradio
-"""
-
 import gradio as gr
 from text2vec import Similarity, EncoderType
+
+"""
+使用text2vec
+计算文本相似度
+"""
+
+
+
 model_name = "/Users/liushihao/PycharmProjects/model-hub/shibing624/text2vec-base-chinese"
 
 # 中文句向量模型(CoSENT)

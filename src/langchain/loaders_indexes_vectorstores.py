@@ -3,7 +3,7 @@ from langchain.document_loaders import TextLoader, UnstructuredPDFLoader, Youtub
 from langchain.indexes import VectorstoreIndexCreator
 
 
-txt_loader = TextLoader("./text.txt", encoding="utf8")
+txt_loader = TextLoader("text.txt", encoding="utf8")
 
 index = VectorstoreIndexCreator().from_loaders([txt_loader])
 print('index:')
