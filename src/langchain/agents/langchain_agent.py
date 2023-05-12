@@ -6,13 +6,14 @@ import os
 os.environ["OPENAI_API_KEY"] = 'OPENAI_API_KEY'
 os.environ["SERPAPI_API_KEY"] = 'SERPAPI_API_KEY'
 """
+pip install google-search-results
 Serpapi 提供了 google 搜索的 api 接口。
 需要到 Serpapi 官网上注册一个用户，https://serpapi.com/ 并复制他给我们生成 api key。
 """
 # 加载 OpenAI 模型
 llm = OpenAI(temperature=0,max_tokens=2048)
 
- # 加载 serpapi 工具
+# 加载 serpapi 工具
 tools = load_tools(["serpapi"])
 
 # 如果搜索完想在计算一下可以这么写
@@ -31,8 +32,6 @@ AgentType
 3. self-ask-with-search 此代理只使用一个工具: Intermediate Answer, 它会为问题寻找事实答案(指的非 gpt 生成的答案, 而是在网络中,文本中已存在的), 如 Google search API 工具
 4. conversational-react-description: 为会话设置而设计的代理, 它的prompt会被设计的具有会话性, 且还是会使用 ReAct 框架来决定使用来个工具, 并且将过往的会话交互存入内存
 '''
-
-
 
 # 运行 agent
 agent.run("What's the date today? What great events have taken place today in history?")
