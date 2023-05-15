@@ -5,6 +5,7 @@ os.environ["HUGGINGFACEHUB_API_TOKEN"] = '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'
 """
 https://huggingface.co/bigscience/bloom-1b7
 
+currently only ('text2text-generation', 'text-generation') are supported
 """
 model_path = "/Users/liushihao/PycharmProjects/model-hub/bigscience/bloom-1b7"
 
