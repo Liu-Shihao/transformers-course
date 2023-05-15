@@ -7,7 +7,7 @@ from langchain.document_loaders import TextLoader
 
 # 1.加载文档
 # Load and process the text
-loader = TextLoader('state_of_the_union.txt')
+loader = TextLoader('../example_data/state_of_the_union.txt')
 documents = loader.load()
 
 # 2.分割文本

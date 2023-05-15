@@ -9,7 +9,7 @@ from langchain.vectorstores import Chroma
 VectorstoreIndexCreator的内部工作流程
 """
 # 加载文档
-loader = TextLoader('../state_of_the_union.txt', encoding='utf8')
+loader = TextLoader('../../example_data/state_of_the_union.txt', encoding='utf8')
 documents = loader.load()
 
 # 文本分割成块（chunk）

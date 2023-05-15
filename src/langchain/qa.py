@@ -1,5 +1,5 @@
 from langchain.document_loaders import TextLoader
-loader = TextLoader('state_of_the_union.txt')
+loader = TextLoader('../example_data/state_of_the_union.txt')
 
 from langchain.indexes import VectorstoreIndexCreator
 index = VectorstoreIndexCreator().from_loaders([loader])

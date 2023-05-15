@@ -2,6 +2,7 @@ from transformers import pipeline
 '''
 自动问答
 此pipeline通过从提供的上下文中提取信息来工作；它不会凭空生成答案。
+默认模型：https://huggingface.co/distilbert-base-cased-distilled-squad
 '''
 question_answerer = pipeline("question-answering")
 question_answerer(

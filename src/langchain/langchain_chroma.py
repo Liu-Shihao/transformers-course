@@ -7,7 +7,7 @@ from langchain.document_loaders import TextLoader
 
 # Load documents
 # Load documents to do question answering over. If you want to do this over your documents, this is the section you should replace.
-loader = TextLoader('state_of_the_union.txt')
+loader = TextLoader('../example_data/state_of_the_union.txt')
 documents = loader.load()
 
 # Split documents

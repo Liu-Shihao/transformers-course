@@ -12,7 +12,7 @@ VectorstoreIndexCreator 默认使用OpenAI 模型，需要设置OpenAI API KEY
 """
 
 # 加载文档：使用TextLoader加载txt文件
-loader = TextLoader('../state_of_the_union.txt', encoding='utf8')
+loader = TextLoader('../../example_data/state_of_the_union.txt', encoding='utf8')
 
 # 创建索引：VectorstoreIndexCreator非常重要，直接将数据转换为向量
 index = VectorstoreIndexCreator().from_loaders([loader])
