@@ -16,7 +16,7 @@ https://python.langchain.com/en/latest/modules/indexes/retrievers/examples/vecto
 """
 
 
-loader = TextLoader('../example_data/zoom_info.txt', encoding='utf8')
+loader = TextLoader('../example_data/test.txt', encoding='utf8')
 
 # index = VectorstoreIndexCreator().from_loaders([loader])
 # query = "What did the president say about Ketanji Brown Jackson"
@@ -24,9 +24,9 @@ loader = TextLoader('../example_data/zoom_info.txt', encoding='utf8')
 
 # 1.Document Loaders
 documents = loader.load()
-print(documents)
+# print(documents)
 # 2.Text Splitters
-text_splitter = CharacterTextSplitter(chunk_size=10, chunk_overlap=0)
+text_splitter = CharacterTextSplitter(chunk_size=100, chunk_overlap=0)
 texts = text_splitter.split_documents(documents)
 
 # 3.Vectorstores
@@ -38,18 +38,21 @@ db = Chroma.from_documents(texts, embeddings)
 # 4.VectorStore Retriever
 retriever = db.as_retriever(search_kwargs={"k": 2})
 
-# docs = retriever.get_relevant_documents("what is oscar's zoom ID?")
+docs = retriever.get_relevant_documents("what is embeddings?")
 # print(docs)
-#
 # print(len(docs))
+for item in docs:
+    print("page_content:")
+    print(item.page_content)
+    print("source:")
+    print(item.metadata['source'])
+    print("=====================")
 
 # 引入llm
-repo_id = "google/flan-t5-xl"
-llm = HuggingFaceHub(repo_id=repo_id, model_kwargs={"temperature":0, "max_length":64})
-
-
-
-qa = RetrievalQA.from_chain_type(llm=llm, chain_type="stuff", retriever=retriever)
-
-query = "what is oscar's zoom ID?"
-qa.run(query)
+# repo_id = "google/flan-t5-xl"
+# llm = HuggingFaceHub(repo_id=repo_id, model_kwargs={"temperature":0, "max_length":64})
+#
+# qa = RetrievalQA.from_chain_type(llm=llm, chain_type="stuff", retriever=retriever)
+#
+# query = "what is embeddings?"
+# qa.run(query)

@@ -1,0 +1,34 @@
+Prompts
+Designing your prompt is essentially how you “program” the model, usually by providing some instructions or a few examples.
+This is different from most other NLP services which are designed for a single task, such as sentiment classification or named entity recognition.
+Instead, the completions and chat completions endpoint can be used for virtually any task including content or code generation,
+summarization, expansion, conversation, creative writing, style transfer, and more.
+
+Tokens
+Our models understand and process text by breaking it down into tokens. Tokens can be words or just chunks of characters.
+For example, the word “hamburger” gets broken up into the tokens “ham”, “bur” and “ger”, w
+hile a short and common word like “pear” is a single token. Many tokens start with a whitespace, for example “ hello” and “ bye”.
+
+The number of tokens processed in a given API request depends on the length of both your inputs and outputs.
+As a rough rule of thumb, 1 token is approximately 4 characters or 0.75 words for English text.
+One limitation to keep in mind is that your text prompt and generated completion combined must be no more than the model's maximum context length (for most models this is 2048 tokens, or about 1500 words).
+Check out our tokenizer tool to learn more about how text translates to tokens.
+
+Models
+The API is powered by a set of models with different capabilities and price points.
+GPT-4 is our latest and most powerful model.
+GPT-3.5-Turbo is the model that powers ChatGPT and is optimized for conversational formats.
+To learn more about these models and what else we offer, visit our models documentation.
+
+What are embeddings?
+An embedding is a vector (list) of floating point numbers.
+The distance between two vectors measures their relatedness.
+Small distances suggest high relatedness and large distances suggest low relatedness.
+
+embeddings measure the relatedness of text strings. Embeddings are commonly used for:
+1.Search (where results are ranked by relevance to a query string)
+2.Clustering (where text strings are grouped by similarity)
+3.Recommendations (where items with related text strings are recommended)
+4.Anomaly detection (where outliers with little relatedness are identified)
+5.Diversity measurement (where similarity distributions are analyzed)
+6.Classification (where text strings are classified by their most similar label)
