@@ -1,6 +1,5 @@
 from transformers import pipeline
 '''
-自动问答
 此pipeline通过从提供的上下文中提取信息来工作；它不会凭空生成答案。
 默认模型：https://huggingface.co/distilbert-base-cased-distilled-squad
 '''
@@ -10,9 +9,6 @@ result = question_answerer(
     context="My name is Sylvain and I work at Hugging Face in Brooklyn",
 )
 print(result)
-
-
-
 
 model_name = "deepset/roberta-base-squad2"
 

@@ -1,7 +1,7 @@
 import torch
 import transformers
 from langchain.chains import RetrievalQA
-from langchain.document_loaders import DirectoryLoader, PyPDFLoader
+from langchain.document_loaders import DirectoryLoader, PyPDFLoader, TextLoader
 from langchain.embeddings import HuggingFaceInstructEmbeddings
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.vectorstores import Chroma
@@ -11,17 +11,14 @@ from langchain.llms import HuggingFacePipeline
 import textwrap
 # pip -q install accelerate bitsandbytes
 """
-LangChain + Retrieval Local LLMs for Retrieval QA - No OpenAI!!!
+LangChain + Retrieval Local LLMs for Retrieval QA - No OpenAI
 https://www.youtube.com/watch?v=9ISVjh8mdlA
-https://colab.research.google.com/drive/1zG1R08TBikG05ecF8et4vi_1F9xutY-6?usp=sharing#scrollTo=wKfX4vX-5RFT
-https://colab.research.google.com/drive/1GztZv8jOpvXk5KBd7heODz-oKe6fkCwA?usp=sharing
-https://colab.research.google.com/drive/1apdUEHhJrVapavJPNnQIVl5UyNfBnss0?usp=sharing#scrollTo=_38HzUkvIewb
 """
 tokenizer = AutoTokenizer.from_pretrained("google/flan-t5-xl")
 
 model = AutoModelForSeq2SeqLM.from_pretrained("google/flan-t5-xl",
-                                              load_in_8bit=True,
-                                              device_map='auto',
+                                              # load_in_8bit=True,
+                                              # device_map='auto',
                                               #   torch_dtype=torch.float16,
                                               #   low_cpu_mem_usage=True,
 
@@ -40,8 +37,8 @@ local_llm = HuggingFacePipeline(pipeline=pipe)
 print(local_llm('What is the capital of England?'))
 
 # Load and process the text files
-# loader = TextLoader('single_text_file.pdf')
-loader = DirectoryLoader('./new_papers/new_papers/', glob="./*.pdf", loader_cls=PyPDFLoader)
+loader = TextLoader('../example_data/test.txt')
+# loader = DirectoryLoader('../example_data', glob="./*.pdf", loader_cls=PyPDFLoader)
 
 documents = loader.load()
 
