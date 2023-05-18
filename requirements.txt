@@ -3,3 +3,4 @@ transformers==4.28.1
 chromadb==0.3.22
 gradio==3.28.3
 llama-index==0.6.4
+flask==2.3.2

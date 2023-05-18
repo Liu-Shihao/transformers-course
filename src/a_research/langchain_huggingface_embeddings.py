@@ -42,7 +42,8 @@ db = Chroma.from_documents(texts, embeddings)
 # 4. Retriever
 retriever = db.as_retriever(search_kwargs={"k": 2})
 
-docs = retriever.get_relevant_documents("what is embeddings?")
+query = "what is embeddings?"
+docs = retriever.get_relevant_documents(query)
 # print(docs)
 # print(len(docs))
 for item in docs:
@@ -78,8 +79,6 @@ llm = HuggingFacePipeline(pipeline=pipe)
 # print("done.")
 
 chain = load_qa_chain(llm, chain_type="stuff")
-
-query = "what is embeddings?"
 llm_response = chain.run(input_documents=docs, question=query)
 print(llm_response)
 print("done.")
