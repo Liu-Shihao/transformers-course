@@ -1,4 +1,4 @@
-from langchain import HuggingFaceHub, HuggingFacePipeline
+from langchain import HuggingFacePipeline
 from langchain.chains import RetrievalQA
 from langchain.chains.question_answering import load_qa_chain
 from langchain.document_loaders import TextLoader

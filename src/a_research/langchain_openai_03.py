@@ -1,9 +1,6 @@
 from langchain.embeddings.openai import OpenAIEmbeddings
 from langchain.text_splitter import CharacterTextSplitter
 from langchain.vectorstores import Chroma
-from langchain.docstore.document import Document
-from langchain.prompts import PromptTemplate
-from langchain.indexes.vectorstore import VectorstoreIndexCreator
 from langchain.chains.question_answering import load_qa_chain
 from langchain.llms import OpenAI
 import os
@@ -13,7 +10,7 @@ https://python.langchain.com/en/latest/modules/chains/index_examples/question_an
 Question Answering Chain
 """
 
-with open("../../state_of_the_union.txt") as f:
+with open("../test.txt") as f:
     state_of_the_union = f.read()
 
 text_splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=0)
@@ -28,16 +25,5 @@ docs = docsearch.get_relevant_documents(query)
 
 chain = load_qa_chain(OpenAI(temperature=0), chain_type="stuff")
 
-query = "What did the president say about Justice Breyer"
-chain.run(input_documents=docs, question=query)
-
-
-
-
-
-
-
-
-
-
-
+answer = chain.run(input_documents=docs, question=query)
+print(answer)

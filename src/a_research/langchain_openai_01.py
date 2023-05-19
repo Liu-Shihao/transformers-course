@@ -15,7 +15,7 @@ Question answering over documents consists of four steps:
 """
 
 # Load Your Documents
-loader = TextLoader('../state_of_the_union.txt')
+loader = TextLoader('../test.txt')
 
 # Create Your Index
 index = VectorstoreIndexCreator().from_loaders([loader])

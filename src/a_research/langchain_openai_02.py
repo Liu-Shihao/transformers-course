@@ -20,7 +20,7 @@ The distance between two vectors measures their relatedness.
 Small distances suggest high relatedness and large distances suggest low relatedness.
 """
 
-loader = TextLoader('../state_of_the_union.txt')
+loader = TextLoader('../test.txt')
 documents = loader.load()
 
 # split the documents into chunks
