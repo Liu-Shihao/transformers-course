@@ -20,7 +20,7 @@ GPT-4 is our latest and most powerful model.
 GPT-3.5-Turbo is the model that powers ChatGPT and is optimized for conversational formats.
 To learn more about these models and what else we offer, visit our models documentation.
 
-What are embeddings?
+Embeddings
 An embedding is a vector (list) of floating point numbers.
 The distance between two vectors measures their relatedness.
 Small distances suggest high relatedness and large distances suggest low relatedness.
