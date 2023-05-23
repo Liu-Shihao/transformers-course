@@ -1,4 +1,4 @@
-langchain==0.0.162
+langchain==0.0.178
 transformers==4.28.1
 chromadb==0.3.22
 gradio==3.28.3

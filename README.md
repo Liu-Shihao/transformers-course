@@ -1,59 +1,17 @@
-# 什么是自然语言处理？
-NLP 是语言学和机器学习交叉领域，专注于理解与人类语言相关的一切。 NLP 任务的目标不仅是单独理解单个单词，而且是能够理解这些单词的上下文。
-
-以下是常见 NLP 任务的列表，每个任务都有一些示例：
-
-- 对整个句子进行分类: 获取评论的情绪，检测电子邮件是否为垃圾邮件，确定句子在语法上是否正确或两个句子在逻辑上是否相关
-- 对句子中的每个词进行分类: 识别句子的语法成分（名词、动词、形容词）或命名实体（人、地点、组织）
-- 生成文本内容: 用自动生成的文本完成提示，用屏蔽词填充文本中的空白
-- 从文本中提取答案: 给定问题和上下文，根据上下文中提供的信息提取问题的答案
-- 从输入文本生成新句子: 将文本翻译成另一种语言，总结文本
-
-NLP 不仅限于书面文本。它还解决了语音识别和计算机视觉中的复杂挑战，例如生成音频样本的转录或图像描述。
-
-#pipeline
-🤗 Transformers 库中最基本的对象是 pipeline() 函数。它将模型与其必要的预处理和后处理步骤连接起来，使我们能够通过直接输入任何文本并获得最终的答案：
-
-# model
-
-# tokenizer
-与其他神经网络一样，Transformer模型无法直接处理原始文本， 因此我们管道的第一步是将文本输入转换为模型能够理解的数字。 为此，我们使用tokenizer(标记器)
-
-# 链接🔗
-- https://huggingface.co/models
-
-深度学习入门课程，例如DeepLearning.AI 提供的 fast.ai实用深度学习教程
-- https://www.deeplearning.ai/ 
-- https://course.fast.ai/
-
-PyTorch & TensorFlow 
-- https://pytorch.org/
-- https://www.tensorflow.org/
-
-DeepLearning.AI的自然语言处理系列课程，其中涵盖了广泛的传统 NLP 模型，如朴素贝叶斯和 LSTM
-- https://www.coursera.org/specializations/natural-language-processing?utm_source=deeplearning-ai&utm_medium=institutions&utm_campaign=20211011-nlp-2-hugging_face-page-nlp-refresh
-
-
-安装依赖
+# Set Up
 ```shell
-使用 pip 包管理器安装 🤗 Transformers 的开发版本
-pip install "transformers[sentencepiece]"
-pip install -r requirements.txt
-```
-
-初始环境
-```shell
-mkdir ~/transformers-course
-cd ~/transformers-course
-#在这个目录中，使用 Python venv 模块创建一个虚拟环境：
+#创建一个虚拟环境：
 python -m venv .env
 
 #文件夹中看到一个名为 .env 的目录
 ls -a
 
-#可以使用activate和deactivate命令来控制进入和退出您的虚拟环境
-# Activate the virtual environment
+#可以使用activate和deactivate命令来控制进入和退出虚拟环境
+# 在 macOS 和 Linux 上，可以运行以下命令：
 source venv/bin/activate
+#在 Windows 上，可以运行以下命令：
+source myenv\Scripts\activate
+
 
 # Deactivate the virtual environment
 source venv/bin/deactivate
@@ -61,8 +19,23 @@ source venv/bin/deactivate
 #可以通过运行 which python 命令来检测虚拟环境是否被激活
 which python
 
-
+#安装必需依赖
+pip install -r requirements.txt
 ```
+
+# LangChain
+文档：https://python.langchain.com/en/latest/
+Github：https://github.com/hwchase17/langchain
+# Chroma
+Chroma 是一个开源嵌入式数据库，宣称是使用内存构建 Python 或 JavaScript LLM 应用程序的最快方法。
+安装简单、功能丰富、集成功能丰富（Langchain、LlamaIndex、OpenAI）、开源免费、有JS客户端
+官网：https://www.trychroma.com/
+GIthub：https://github.com/chroma-core/chroma
+文档：https://docs.trychroma.com/
+# Gradio
+Create UIs for your machine learning model in Python in 3 minutes
+Github地址：https://github.com/gradio-app/gradio
+文档：https://www.gradio.app/quickstart/
 
 # 安装 TensorFlow 2.0 或 PyTorch 环境
 TensorFlow和PyTorch都是当前非常流行的深度学习框架，它们都提供了一种方便的方式来构建、训练和部署深度神经网络模型。
@@ -113,26 +86,3 @@ If you cannot immediately regenerate your protos, some other possible workaround
 这个错误通常是由于在使用较新版本的 protobuf 库时，与生成的 protobuf 文件不兼容导致的。可以尝试将 protobuf 包降级到 3.20.x 或更低版本。您可以在终端中输入 pip install protobuf==3.20 来安装 3.20.x 版本的 protobuf。
 你可以在终端中使用以下命令来安装：pip install protobuf==3.20
    
-# LangChain
-
-文档：https://python.langchain.com/en/latest/
-
-Github：https://github.com/hwchase17/langchain
-# Chroma
-
-Chroma 是一个开源嵌入式数据库，宣称是使用内存构建 Python 或 JavaScript LLM 应用程序的最快方法。
-
-安装简单、功能丰富、集成功能丰富（Langchain、LlamaIndex、OpenAI）、开源免费、有JS客户端
-
-官网：https://www.trychroma.com/
-
-GIthub：https://github.com/chroma-core/chroma
-
-文档：https://docs.trychroma.com/
-# Gradio
-
-Create UIs for your machine learning model in Python in 3 minutes
-
-Github地址：https://github.com/gradio-app/gradio
-
-文档：https://www.gradio.app/quickstart/
