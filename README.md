@@ -112,3 +112,27 @@ If you cannot immediately regenerate your protos, some other possible workaround
   Set PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=python (but this will use pure-Python parsing and will be much slower).
 这个错误通常是由于在使用较新版本的 protobuf 库时，与生成的 protobuf 文件不兼容导致的。可以尝试将 protobuf 包降级到 3.20.x 或更低版本。您可以在终端中输入 pip install protobuf==3.20 来安装 3.20.x 版本的 protobuf。
 你可以在终端中使用以下命令来安装：pip install protobuf==3.20
+   
+# LangChain
+
+文档：https://python.langchain.com/en/latest/
+
+Github：https://github.com/hwchase17/langchain
+# Chroma
+
+Chroma 是一个开源嵌入式数据库，宣称是使用内存构建 Python 或 JavaScript LLM 应用程序的最快方法。
+
+安装简单、功能丰富、集成功能丰富（Langchain、LlamaIndex、OpenAI）、开源免费、有JS客户端
+
+官网：https://www.trychroma.com/
+
+GIthub：https://github.com/chroma-core/chroma
+
+文档：https://docs.trychroma.com/
+# Gradio
+
+Create UIs for your machine learning model in Python in 3 minutes
+
+Github地址：https://github.com/gradio-app/gradio
+
+文档：https://www.gradio.app/quickstart/
