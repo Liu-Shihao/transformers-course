@@ -38,6 +38,7 @@ DeepLearning.AI的自然语言处理系列课程，其中涵盖了广泛的传�
 ```shell
 使用 pip 包管理器安装 🤗 Transformers 的开发版本
 pip install "transformers[sentencepiece]"
+pip install -r requirements.txt
 ```
 
 初始环境

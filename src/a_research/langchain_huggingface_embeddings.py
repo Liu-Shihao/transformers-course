@@ -10,7 +10,7 @@ import os
 
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM, pipeline
 
-os.environ["HUGGINGFACEHUB_API_TOKEN"] = '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'
+# os.environ["HUGGINGFACEHUB_API_TOKEN"] = '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'
 """
 https://python.langchain.com/en/latest/use_cases/question_answering.html
 https://python.langchain.com/en/latest/modules/indexes/retrievers/examples/vectorstore-retriever.html
