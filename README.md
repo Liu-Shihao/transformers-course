@@ -146,4 +146,37 @@ data = response.read()
 # ...
 
 ```
+在设置代理的用户名和密码时，通常需要将其进行 Base64 编码。这是因为代理服务器在进行认证时，通常会要求提供经过编码的凭据。
 
+在代码中设置代理时，你需要将用户名和密码进行 Base64 编码，并在代理设置中使用编码后的凭据。以下是一个示例：
+```python
+import urllib.request
+import base64
+
+# 设置代理服务器地址和端口
+proxy_server = 'http://proxy_server:proxy_port'
+
+# 设置代理服务器的认证信息
+proxy_username = 'your_username'
+proxy_password = 'your_password'
+
+# 对用户名和密码进行 Base64 编码
+credentials = base64.b64encode(f'{proxy_username}:{proxy_password}'.encode('utf-8')).decode('utf-8')
+
+# 构建代理处理器
+proxy_handler = urllib.request.ProxyHandler({'http': proxy_server, 'https': proxy_server})
+
+# 设置代理的认证信息
+proxy_handler.addheaders = [('Proxy-Authorization', f'Basic {credentials}')]
+
+# 创建 opener
+opener = urllib.request.build_opener(proxy_handler)
+urllib.request.install_opener(opener)
+
+# 现在可以通过 urllib 请求来使用代理
+response = urllib.request.urlopen('http://example.com')
+
+```
+在上述示例中，proxy_username 和 proxy_password 分别是代理服务器的用户名和密码。我们使用 base64.b64encode() 方法将用户名和密码拼接成 username:password 的形式，并进行 Base64 编码。然后，在代理设置中，我们使用编码后的凭据添加了 Proxy-Authorization 头部，以进行认证。
+
+请注意，使用 Base64 编码只是一种常见的方式，具体的认证方式可能因代理服务器和要使用的库而有所不同。在实际应用中，你可能需要根据代理服务器的要求和库的要求进行相应的编码和设置。
