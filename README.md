@@ -23,6 +23,15 @@ which python
 pip install -r requirements.txt
 ```
 
+其他pip命令
+```shell
+pip install Flask==1.0 
+pip install Django>=1.11 
+pip install numpy>=1.15,<=1.19
+#更新依赖版本
+pip install --upgrade requests
+```
+
 # LangChain
 文档：https://python.langchain.com/en/latest/
 Github：https://github.com/hwchase17/langchain
@@ -86,3 +95,55 @@ If you cannot immediately regenerate your protos, some other possible workaround
 这个错误通常是由于在使用较新版本的 protobuf 库时，与生成的 protobuf 文件不兼容导致的。可以尝试将 protobuf 包降级到 3.20.x 或更低版本。您可以在终端中输入 pip install protobuf==3.20 来安装 3.20.x 版本的 protobuf。
 你可以在终端中使用以下命令来安装：pip install protobuf==3.20
    
+# Proxy 
+## 代码中设置全局代理
+通过设置 `os.environ` 的方式，代理配置将应用于整个 Python 进程，包括第三方库的网络请求部分。这样，当你运行 Huggingface 相关的代码时，它将自动使用代理进行网络连接。
+```python
+import os
+
+# 设置代理配置
+os.environ['http_proxy'] = 'http://your_proxy_address:proxy_port'
+os.environ['https_proxy'] = 'http://your_proxy_address:proxy_port'
+```
+## corporate.pac
+`corporate.pac` 文件是一个 PAC（Proxy Auto-Config）文件，它用于自动配置代理服务器的行为。PAC 文件是一个 JavaScript 文件，它包含一些规则和逻辑，用于确定特定 URL 的访问是否需要通过代理服务器。
+
+当你的系统或浏览器配置为使用自动代理配置（Automatic Proxy Configuration）时，会使用 PAC 文件来判断是否要通过代理服务器访问特定的 URL。
+
+PAC 文件中的规则可以基于 URL 的模式、主机名、端口等条件进行匹配和判断。根据规则的结果，代理服务器可以被动态地选择或绕过。
+
+通过使用 PAC 文件，可以实现根据特定条件自动切换代理服务器，以满足不同的网络访问需求。这对于企业内部网络和外部网络的访问控制以及优化网络流量分配非常有用。
+
+在你的情况下，你从 Windows 的代理配置中获取到的 corporate.pac 文件应该包含了你公司内部网络访问的代理规则。这个文件可能会指定某些 URL 需要通过代理访问，而其他 URL 可以直接访问或绕过代理。
+
+请注意，PAC 文件是一个由网络管理员配置和管理的文件，对于具体的规则和逻辑，你可能需要联系你的网络管理员或查阅公司的相关文档来获取更多信息。
+## 使用 PAC 文件设置代理的示例代码
+使用 PAC 文件来设置代理的方式与直接指定代理地址和端口略有不同。你需要使用 urllib 库中的 urllib.request 模块来加载 PAC 文件并解析其规则，然后根据规则来确定要使用的代理配置。
+```python
+import urllib.request
+
+def get_proxy(url):
+    proxy_url = urllib.request.getproxies().get(url)
+    if proxy_url:
+        return urllib.request.ProxyHandler({'http': proxy_url, 'https': proxy_url})
+    return urllib.request.ProxyHandler({})
+
+# 加载 PAC 文件
+pac_url = 'file:///path/to/corporate.pac'
+proxy_handler = urllib.request.ProxyHandler({'http': pac_url, 'https': pac_url})
+
+# 构建 opener
+opener = urllib.request.build_opener(proxy_handler)
+
+# 打开 URL
+url = 'https://www.example.com'
+response = opener.open(url)
+
+# 使用代理进行网络请求
+data = response.read()
+
+# 处理响应数据
+# ...
+
+```
+
