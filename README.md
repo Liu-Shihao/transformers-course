@@ -180,3 +180,42 @@ response = urllib.request.urlopen('http://example.com')
 在上述示例中，proxy_username 和 proxy_password 分别是代理服务器的用户名和密码。我们使用 base64.b64encode() 方法将用户名和密码拼接成 username:password 的形式，并进行 Base64 编码。然后，在代理设置中，我们使用编码后的凭据添加了 Proxy-Authorization 头部，以进行认证。
 
 请注意，使用 Base64 编码只是一种常见的方式，具体的认证方式可能因代理服务器和要使用的库而有所不同。在实际应用中，你可能需要根据代理服务器的要求和库的要求进行相应的编码和设置。
+
+## 使用JKS证书认证的Proxy
+如果在使用代理时需要使用 JKS 证书进行认证，你可以使用 ssl 模块中的 create_default_context 方法创建一个 SSL 上下文，并加载 JKS 证书文件。
+
+以下是一个示例代码：
+```python
+
+import urllib.request
+import ssl
+
+# 设置代理服务器地址和端口
+proxy_server = 'http://proxy_server:proxy_port'
+
+# 设置代理服务器的 JKS 证书文件路径和密码
+jks_file = 'path/to/jks/file.jks'
+jks_password = 'your_jks_password'
+
+# 创建 SSL 上下文
+context = ssl.create_default_context()
+
+# 加载 JKS 证书文件
+context.load_cert_chain(jks_file, password=jks_password)
+
+# 构建代理处理器
+proxy_handler = urllib.request.ProxyHandler({'http': proxy_server, 'https': proxy_server})
+
+# 将 SSL 上下文与代理处理器一起传递给 opener
+opener = urllib.request.build_opener(proxy_handler, urllib.request.HTTPSHandler(context=context))
+urllib.request.install_opener(opener)
+
+# 现在可以通过 urllib 请求来使用代理
+response = urllib.request.urlopen('http://example.com')
+
+```
+在上述示例中，我们首先设置代理服务器的地址和端口。然后，使用 ssl.create_default_context() 创建一个默认的 SSL 上下文。接下来，使用 context.load_cert_chain() 方法加载 JKS 证书文件，并提供密码。
+
+然后，我们创建一个代理处理器，并使用 urllib.request.HTTPSHandler 类传递 SSL 上下文。最后，通过 urlopen 方法发起带有代理的请求。
+
+请注意，上述示例是使用 urllib 库进行设置的示例。如果你使用其他库，可能需要参考其相应的文档和示例代码来进行 JKS 证书认证的设置。
