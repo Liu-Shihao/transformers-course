@@ -11,6 +11,6 @@ generator = pipeline("text-generation",
 result = generator("In this course, we will teach you how to")
 print(result)
 '''
-[{'generated_text': "In this course, we will teach you how to create the perfect web app using Google's Open Source"}, 
+[{'generated_text': "In this course, we will teach you how to create the perfect a_web app using Google's Open Source"}, 
 {'generated_text': 'In this course, we will teach you how to design and build an immersive VR experience that lets you'}]
 '''
